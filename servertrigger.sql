@@ -3,13 +3,13 @@ on all server
 for LOGON
 as 
 begin
---bu script kayýt aloýnan ipnin kaç defa brute force yaptýgýný gösterir
+--bu script kayï¿½t altina ipnin kaï¿½ defa brute force yaptï¿½gï¿½nï¿½ gï¿½sterir
 declare @count as int
 select @count=count(*) from AUDIT.dbo.brute_force_attack
 where COMPUTERIP=CONNECTIONPROPERTY('client_net_address')
 if @count>0
 begin
-rollback --eðer ssiteme girdiyse bile yapýlan iþlemi geri al demek
+rollback --eï¿½er ssiteme girdiyse bile yapï¿½lan iï¿½lemi geri al demek
 end
 
 
@@ -17,4 +17,4 @@ end
 end
 
 
---select CONNECTIONPROPERTY('client_net_address') -- su anda baðlý olan cihazýn ipsini verir
+--select CONNECTIONPROPERTY('client_net_address') -- su anda baï¿½lï¿½ olan cihazï¿½n ipsini verir
