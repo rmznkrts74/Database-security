@@ -1,0 +1,1 @@
+select * from AUDIT.dbo.brute_force_attack
