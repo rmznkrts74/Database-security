@@ -2,3 +2,4 @@ In this repo we are check the link if the link is in the our database it is mali
 
 
 !!Don't forget add the links.sql on database
+in this file we just have a some malicious link I take them  USOM.GOV.TR you can take more of them there.
