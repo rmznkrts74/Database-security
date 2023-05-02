@@ -49,6 +49,7 @@ public class DatabaseConnector {
    }
 
    public void addLink(String link) {
+       System.out.println(link);
       try {
          Class.forName(driver).newInstance();
          conn = DriverManager.getConnection(url,userName,password);
