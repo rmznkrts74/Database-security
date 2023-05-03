@@ -23,38 +23,37 @@ public class DatabaseConnector {
        return linkList;
    }
 
-   public boolean checkLink(String link) {
-      try {
-         Class.forName(driver).newInstance();
-         conn = DriverManager.getConnection(url,userName,password);
-         Statement stmt = conn.createStatement();
-         ResultSet rs = stmt.executeQuery("SELECT * FROM linkler WHERE link='" + link + "'");
-         if (rs.next()) {
-            String url = rs.getString("link");
-            if (url.startsWith("http://")) {
-               System.out.println("This link is can be safe but it doesn't have security Certificate.");
-               return false;
-            } else {
-               System.out.println("This link is dangerous!");
-               return true;
-            }
+public boolean checkLink(String link) {
+   try {
+      Class.forName(driver).newInstance();
+      conn = DriverManager.getConnection(url,userName,password);
+      Statement stmt = conn.createStatement();
+      ResultSet rs = stmt.executeQuery("SELECT * FROM linkler WHERE link='" + link + "'");
+      if (rs.next()) {
+         String url = rs.getString("link");
+         if (url.startsWith("http://")) {
+            System.out.println("This link is can be safe but it doesn't have security Certificate.");
+            return false;
          } else {
-            System.out.println("This link probably safe but be careful ;)");
+            System.out.println("This link is dangerous!");
+            return true;
          }
-         conn.close();
-      } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException e) {
-         e.printStackTrace();
+      } else {
+         System.out.println("This link is not found in the database");
+         return true; // Var olmayan bir link de dangerous olarak işaretlenebilir.
       }
-      return false;
+   } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException e) {
+      e.printStackTrace();
    }
+   return false;
+}
+
 
    public void addLink(String link) {
-       System.out.println(link);
       try {
          Class.forName(driver).newInstance();
          conn = DriverManager.getConnection(url,userName,password);
          Statement stmt = conn.createStatement();
-         
          int rs = stmt.executeUpdate("INSERT INTO linkler (link) VALUES ('" + link + "')");
          System.out.println(link);
          System.out.println("Link added to the database");
