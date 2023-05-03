@@ -126,9 +126,7 @@ public class LinkWindow extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         DatabaseConnector dbConnect=new DatabaseConnector();
-        //JTextField textField=new JTextField(100);
         String rs=txtCheck.getText();
-        //List<Link> listLink=dbConnect.listLink(rs);
         dbConnect.checkLink(rs);
         txtCheck.setText("");
 
@@ -139,8 +137,8 @@ public class LinkWindow extends javax.swing.JFrame {
         DatabaseConnector dbConnect2 =new DatabaseConnector();
         //JTextField textField2=new JTextField(100);
         String newLink=txtAdd.getText();
-        JOptionPane.showMessageDialog(this, newLink);
         dbConnect2.addLink(newLink);
+        JOptionPane.showMessageDialog(this, newLink + " added tha database");
         txtAdd.setText("");
     }//GEN-LAST:event_jButton2ActionPerformed
 

@@ -3,6 +3,7 @@ package databaseapp;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 public class DatabaseConnector {
    private Connection conn;
@@ -32,14 +33,14 @@ public boolean checkLink(String link) {
       if (rs.next()) {
          String url = rs.getString("link");
          if (url.startsWith("http://")) {
-            System.out.println("This link is can be safe but it doesn't have security Certificate.");
+             JOptionPane.showMessageDialog(null,"This link is can be safe but it doesn't have security Certificate.");
             return false;
          } else {
-            System.out.println("This link is dangerous!");
+            JOptionPane.showMessageDialog(null,"This link is dangerous!");
             return true;
          }
       } else {
-         System.out.println("This link is not found in the database");
+         JOptionPane.showMessageDialog(null,"This link is not found in the database");
          return true; // Var olmayan bir link de dangerous olarak işaretlenebilir.
       }
    } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException e) {
